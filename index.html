@@ -1,218 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>the human condition</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    /* --- Y2K HTML/CSS VIBE --- */
-    body {
-      margin: 0;
-      font-family: "Comic Sans MS", "Arial", sans-serif;
-      background: radial-gradient(circle at top, #fefefe, #d6d6ff);
-      color: #111;
-    }
+<meta charset="UTF-8" />
+<title>Zion Thesis Archive</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    marquee {
-      background: #000;
-      color: #fff;
-      padding: 6px 0;
-      font-size: 14px;
-      letter-spacing: 1px;
-    }
+<style>
 
-    /* --- MAIN GRID --- */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(25, 1fr);
-      gap: 4px;
-      padding: 12px;
-    }
+/* --------------------------
+   BODY + GRADIENT SHIFT
+-------------------------- */
 
-    .cell {
-      position: relative;
-      width: 100%;
-      padding-top: 100%; /* square */
-      overflow: hidden;
-      border: 1px solid #999;
-      background: #eee;
-    }
+body {
+  margin: 0;
+  font-family: "Comic Sans MS", sans-serif;
+  overflow: hidden;
+  animation: bgShift 20s infinite alternate ease-in-out;
+}
 
-    .cell img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: opacity 0.3s ease;
-    }
+/* Attachment Gradient Cycle */
+@keyframes bgShift {
+  0%   { background: linear-gradient(to bottom right, #d9f7d9, #3cb371); } /* green */
+  33%  { background: linear-gradient(to bottom right, #dceeff, #4682b4); } /* blue */
+  66%  { background: linear-gradient(to bottom right, #eedcff, #9370db); } /* purple */
+  100% { background: linear-gradient(to bottom right, #fff0cc, #ffb347); } /* orange */
+}
 
-    .cell img.hover {
-      opacity: 0;
-    }
+/* --------------------------
+   ATTACHMENT KEY
+-------------------------- */
 
-    .cell:hover img.hover {
-      opacity: 1;
-    }
+.attachment-key {
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  z-index: 10;
+  line-height: 1.6;
+}
 
-    .cell:hover img.base {
-      opacity: 0;
-    }
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
 
-    /* --- GOOGLE-LIKE CATEGORY LANDING --- */
-    .landing {
-      text-align: center;
-      margin: 80px 0 40px;
-    }
+.green { background:#3cb371; }
+.blue { background:#4682b4; }
+.purple { background:#9370db; }
+.orange { background:#ffb347; }
 
-    .landing h1 {
-      font-size: 48px;
-      font-weight: normal;
-      margin-bottom: 24px;
-      text-shadow: 2px 2px #fff;
-    }
+/* --------------------------
+   GRID BACKGROUND
+-------------------------- */
 
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(25, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  gap: 4px;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
 
-    .buttons a {
-      padding: 8px 14px;
-      border: 2px outset #999;
-      background: #f3f3ff;
-      color: #000;
-      text-decoration: none;
-      font-size: 14px;
-      cursor: pointer;
-    }
+.cell {
+  background: white;
+  opacity: 0.5;
+  animation: flicker infinite alternate ease-in-out;
+}
 
-    .buttons a:hover {
-      background: #cfcfff;
-    }
+@keyframes flicker {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.7; }
+}
 
-    /* --- SUBPAGES --- */
-    .page {
-      display: none;
-      padding: 40px;
-    }
+/* --------------------------
+   CENTER FEATURE IMAGE
+-------------------------- */
 
-    .page.active {
-      display: block;
-    }
+.centerpiece {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 20;
+}
 
-    .back {
-      display: inline-block;
-      margin-bottom: 20px;
-      font-size: 14px;
-      cursor: pointer;
-      color: blue;
-      text-decoration: underline;
-    }
+.centerpiece img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border: 3px solid white;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
 
-    .notes {
-      max-width: 700px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 20px;
-      border: 2px dashed #999;
-      line-height: 1.6;
-      font-size: 14px;
-    }
-  </style>
+/* --------------------------
+   BUTTON BOX
+-------------------------- */
+
+.button-box {
+  background: white;
+  margin-top: 20px;
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+#randomBtn {
+  border: none;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+  animation: textShift 8s infinite alternate ease-in-out;
+}
+
+/* Button Color Shift */
+@keyframes textShift {
+  0%   { color:#3cb371; }
+  33%  { color:#4682b4; }
+  66%  { color:#9370db; }
+  100% { color:#ffb347; }
+}
+
+</style>
 </head>
+
 <body>
 
-<marquee>✧ Zion Lim Thesis Website ✧ love, loss, screenshots, situationships ✧</marquee>
-
-<!-- MAIN PAGE -->
-<div id="home" class="page active">
-
-  <div class="grid">
-    <!-- 25 columns x 8 rows = 200 cells -->
-    <!-- Replace src with your own images -->
-    <!-- Example cell -->
-    <script>
-      for (let i = 0; i < 200; i++) {
-        document.write(`
-          <div class="cell">
-            <img class="base" src="images/base.jpg" />
-            <img class="hover" src="images/hover.jpg" />
-          </div>
-        `);
-      }
-    </script>
-  </div>
-
-  <div class="landing">
-    <h1>explore the archive</h1>
-    <div class="buttons">
-      <a onclick="openPage('cat1')">heartbroken by a man</a>
-      <a onclick="openPage('cat2')">heartbroken by a woman</a>
-      <a onclick="openPage('cat3')">situationship</a>
-      <a onclick="openPage('cat4')">ghosted</a>
-      <a onclick="openPage('cat5')">unsent messages</a>
-      <a onclick="openPage('cat6')">screenshots that hurt</a>
-      <a onclick="openPage('cat7')">almost relationships</a>
-      <a onclick="openPage('cat8')">late night texts</a>
-      <a onclick="openPage('cat9')">blocked/unblocked</a>
-      <a onclick="openPage('cat10')">what i wish i said</a>
-      <a onclick="openPage('cat11')">mutuals trauma</a>
-      <a onclick="openPage('cat12')">long distance</a>
-      <a onclick="openPage('cat13')">emotional limbo</a>
-      <a onclick="openPage('cat14')">healing era</a>
-      <a onclick="openPage('notes')">Zion’s misc notes</a>
-    </div>
-  </div>
+<div class="attachment-key">
+  <div><span class="dot green"></span>Secure: comfortable with closeness and trust</div>
+  <div><span class="dot blue"></span>Avoidant: values independence, withdraws emotionally</div>
+  <div><span class="dot purple"></span>Disorganized: craves intimacy yet fears it</div>
+  <div><span class="dot orange"></span>Anxious: seeks closeness but fears abandonment</div>
 </div>
 
-<!-- CATEGORY PAGES -->
-<div id="cat1" class="page">
-  <span class="back" onclick="openPage('home')">← back</span>
-  <h2>heartbroken by a man</h2>
-  <div class="grid"></div>
-</div>
+<div class="grid"></div>
 
-<div id="cat2" class="page">
-  <span class="back" onclick="openPage('home')">← back</span>
-  <h2>heartbroken by a woman</h2>
-  <div class="grid"></div>
-</div>
-
-<!-- Duplicate structure for other categories -->
-
-<!-- NOTES PAGE -->
-<div id="notes" class="page">
-  <span class="back" onclick="openPage('home')">← back</span>
-  <div class="notes">
-    <h2>Zion’s misc notes</h2>
-    <p>
-      This archive taught me that longing is repetitive. Everyone thinks their
-      heartbreak is unique, but the language overlaps. Timing. Distance.
-      Emotional unavailability. Fear disguised as logic.
-    </p>
-    <p>
-      Reading these notes made me realize how often people apologize for wanting
-      to be chosen.
-    </p>
-    <p>
-      I learned that screenshots are modern love letters. That ambiguity hurts
-      more than rejection. That closure is usually self-written.
-    </p>
+<div class="centerpiece">
+  <img id="mainImage" src="images/1.png" />
+  <div class="button-box">
+    <button id="randomBtn">click me</button>
   </div>
 </div>
 
 <script>
-  function openPage(id) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    window.scrollTo(0, 0);
-  }
+
+/* --------------------------
+   GENERATE 250 GRID CELLS
+-------------------------- */
+
+const grid = document.querySelector(".grid");
+
+for (let i = 0; i < 250; i++) {
+  const cell = document.createElement("div");
+  cell.classList.add("cell");
+
+  /* random flicker speed */
+  cell.style.animationDuration = (2 + Math.random() * 4) + "s";
+
+  grid.appendChild(cell);
+}
+
+/* --------------------------
+   RANDOM IMAGE SYSTEM
+-------------------------- */
+
+/* Replace with your actual file names */
+const images = [
+  "images/1.png",
+  "images/2.png",
+  "images/3.png",
+  "images/4.png",
+  "images/5.png"
+];
+
+document.getElementById("randomBtn").addEventListener("click", () => {
+  const randomIndex = Math.floor(Math.random() * images.length);
+  document.getElementById("mainImage").src = images[randomIndex];
+});
+
 </script>
 
 </body>
