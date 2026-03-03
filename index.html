@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Zion Thesis Archive</title>
+<title>The Human Condition</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <style>
@@ -18,7 +18,6 @@ body {
   animation: bgShift 20s infinite alternate ease-in-out;
 }
 
-/* Attachment Gradient Cycle */
 @keyframes bgShift {
   0%   { background: linear-gradient(to bottom right, #d9f7d9, #3cb371); }
   33%  { background: linear-gradient(to bottom right, #dceeff, #4682b4); }
@@ -145,18 +144,21 @@ body {
 <div class="grid"></div>
 
 <div class="centerpiece">
-  <img id="mainImage" src="images/1.png" />
+  <!-- removed hardcoded src -->
+  <img id="mainImage" />
   <div class="button-box">
     <button id="randomBtn">click me</button>
   </div>
 </div>
 
-<!-- Include auto-generated images array -->
+<!-- load your auto-generated image list -->
 <script src="images.js"></script>
 
 <script>
+
 /* Generate 250 grid cells */
 const grid = document.querySelector(".grid");
+
 for (let i = 0; i < 250; i++) {
   const cell = document.createElement("div");
   cell.classList.add("cell");
@@ -164,11 +166,26 @@ for (let i = 0; i < 250; i++) {
   grid.appendChild(cell);
 }
 
+/* Wait until page fully loads */
+window.addEventListener("DOMContentLoaded", () => {
+
+  if (typeof images !== "undefined" && images.length > 0) {
+    // Load first image automatically
+    document.getElementById("mainImage").src = images[0];
+  } else {
+    console.error("images.js not loaded or empty.");
+  }
+
+});
+
 /* Random Image Button */
 document.getElementById("randomBtn").addEventListener("click", () => {
-  const randomIndex = Math.floor(Math.random() * images.length);
-  document.getElementById("mainImage").src = images[randomIndex];
+  if (typeof images !== "undefined" && images.length > 0) {
+    const randomIndex = Math.floor(Math.random() * images.length);
+    document.getElementById("mainImage").src = images[randomIndex];
+  }
 });
+
 </script>
 
 </body>
