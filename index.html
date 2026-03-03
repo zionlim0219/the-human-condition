@@ -62,7 +62,7 @@ body {
   display: grid;
   grid-template-columns: repeat(25, 1fr);
   grid-template-rows: repeat(10, 1fr);
-  gap: 6px; /* more visible spacing */
+  gap: 6px;
   position: absolute;
   width: 100%;
   height: 100vh;
@@ -77,7 +77,6 @@ body {
   animation: flicker infinite alternate ease-in-out;
 }
 
-/* Flicker variation */
 @keyframes flicker {
   0% { opacity: 0.25; }
   100% { opacity: 0.65; }
@@ -124,7 +123,6 @@ body {
   animation: textShift 8s infinite alternate ease-in-out;
 }
 
-/* Button Color Shift */
 @keyframes textShift {
   0%   { color:#3cb371; }
   33%  { color:#4682b4; }
@@ -153,11 +151,12 @@ body {
   </div>
 </div>
 
-<script>
+<!-- Include auto-generated images array -->
+<script src="images.js"></script>
 
+<script>
 /* Generate 250 grid cells */
 const grid = document.querySelector(".grid");
-
 for (let i = 0; i < 250; i++) {
   const cell = document.createElement("div");
   cell.classList.add("cell");
@@ -166,19 +165,10 @@ for (let i = 0; i < 250; i++) {
 }
 
 /* Random Image Button */
-const images = [
-  "images/1.png",
-  "images/2.png",
-  "images/3.png",
-  "images/4.png",
-  "images/5.png"
-];
-
 document.getElementById("randomBtn").addEventListener("click", () => {
   const randomIndex = Math.floor(Math.random() * images.length);
   document.getElementById("mainImage").src = images[randomIndex];
 });
-
 </script>
 
 </body>
