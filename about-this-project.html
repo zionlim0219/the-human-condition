@@ -6,22 +6,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <style>
-
 /* --------------------------
    BODY + STATIC BACKGROUND
 -------------------------- */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  background: #ffffff;
   overflow-x: hidden;
-  background: #ffffff; /* static white */
+  overflow-y: auto;
+  position: relative;
+  min-height: 100vh;
 }
 
 /* --------------------------
    ATTACHMENT KEY
 -------------------------- */
 .attachment-key {
-  position: absolute;
+  position: fixed;
   top: 20px;
   width: 100%;
   text-align: center;
@@ -53,14 +55,14 @@ body {
 .orange { background:#ffb347; }
 
 /* --------------------------
-   BACKGROUND GRID (LESS DENSE)
+   BACKGROUND GRID
 -------------------------- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(10, 1fr); /* fewer columns for lighter grid */
-  grid-template-rows: repeat(5, 1fr);     /* fewer rows */
+  grid-template-columns: repeat(10, 1fr); 
+  grid-template-rows: repeat(5, 1fr);     
   gap: 12px;
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100vh;
   padding: 20px;
@@ -87,11 +89,11 @@ body {
    CENTER IMAGE
 -------------------------- */
 .centerpiece {
-  position: relative;
-  margin: 100px auto 20px auto;
+  margin: 150px auto 20px auto;
   text-align: center;
   max-width: 400px;
   z-index: 30;
+  position: relative;
 }
 
 .centerpiece img {
@@ -110,17 +112,19 @@ body {
    TEXT AREA
 -------------------------- */
 .text-area {
-  background: #ffffff; /* fully opaque */
+  background: #ffffff;
   padding: 25px 25px;
   border-radius: 12px;
   max-width: 650px;
-  margin: 20px auto 60px auto;
+  margin: 40px auto 60px auto;
   text-align: left;
-  font-size: 15px; /* slightly smaller */
+  font-size: 15px; 
   line-height: 1.5;
   color: #111;
   white-space: pre-line;
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  z-index: 30;
+  position: relative;
 }
 
 /* --------------------------
@@ -131,6 +135,8 @@ body {
   justify-content: center;
   margin-top: 20px;
   gap: 16px;
+  position: relative;
+  z-index: 30;
 }
 
 .button-box button {
@@ -184,13 +190,13 @@ I hope it has helped you in that way. ♡
 </div>
 
 <div class="button-box">
-  <button onclick="window.location.href='index.html'">back to home</button>
+  <button onclick="window.location.href='https://zionlim0219.github.io/the-human-condition'">back to home</button>
 </div>
 
 <script>
-/* ==========================
+/* --------------------------
    GRID SETUP (LESS CELLS)
-========================== */
+-------------------------- */
 const images = [
   "images/2.png","images/3.png","images/4.png","images/5.png",
   "images/6.png","images/7.png","images/8.png",
@@ -198,7 +204,7 @@ const images = [
 ];
 
 const grid = document.querySelector(".grid");
-for (let i = 0; i < 40; i++) { // fewer cells for performance
+for (let i = 0; i < 40; i++) { // fewer cells
   const cell = document.createElement("div");
   cell.classList.add("cell");
   const randImg = images[Math.floor(Math.random() * images.length)];
