@@ -8,20 +8,13 @@
 <style>
 
 /* --------------------------
-   BODY + BACKGROUND GRID
+   BODY + STATIC BACKGROUND
 -------------------------- */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  overflow: hidden;
-  animation: bgShift 20s infinite alternate ease-in-out;
-}
-
-@keyframes bgShift {
-  0%   { background: linear-gradient(to bottom right, #d9f7d9, #3cb371); }
-  33%  { background: linear-gradient(to bottom right, #dceeff, #4682b4); }
-  66%  { background: linear-gradient(to bottom right, #eedcff, #9370db); }
-  100% { background: linear-gradient(to bottom right, #fff0cc, #ffb347); }
+  overflow-x: hidden;
+  background: #ffffff; /* static white */
 }
 
 /* --------------------------
@@ -60,13 +53,13 @@ body {
 .orange { background:#ffb347; }
 
 /* --------------------------
-   BACKGROUND GRID (NOTES)
+   BACKGROUND GRID (LESS DENSE)
 -------------------------- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(15, 1fr);
-  grid-template-rows: repeat(6, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(10, 1fr); /* fewer columns for lighter grid */
+  grid-template-rows: repeat(5, 1fr);     /* fewer rows */
+  gap: 12px;
   position: absolute;
   width: 100%;
   height: 100vh;
@@ -80,14 +73,14 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0.2;
-  animation: flicker infinite alternate ease-in-out;
   border-radius: 4px;
+  animation: flicker 4s infinite alternate ease-in-out;
 }
 
 @keyframes flicker {
-  0% { opacity: 0.15; }
-  50% { opacity: 0.3; }
-  100% { opacity: 0.4; }
+  0% { opacity: 0.1; }
+  50% { opacity: 0.25; }
+  100% { opacity: 0.3; }
 }
 
 /* --------------------------
@@ -95,7 +88,7 @@ body {
 -------------------------- */
 .centerpiece {
   position: relative;
-  margin: 120px auto 30px auto;
+  margin: 100px auto 20px auto;
   text-align: center;
   max-width: 400px;
   z-index: 30;
@@ -117,14 +110,14 @@ body {
    TEXT AREA
 -------------------------- */
 .text-area {
-  background: rgba(255,255,255,0.85);
+  background: #ffffff; /* fully opaque */
   padding: 25px 25px;
   border-radius: 12px;
-  max-width: 650px; /* slimmer than before */
+  max-width: 650px;
   margin: 20px auto 60px auto;
   text-align: left;
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 15px; /* slightly smaller */
+  line-height: 1.5;
   color: #111;
   white-space: pre-line;
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
@@ -177,19 +170,17 @@ body {
 </div>
 
 <div class="text-area">
-hello! my name is zion lim, and the website you are currently on is part of my overarching senior thesis here at mason gross school of the arts. thank you for checking it out!
+Before my thesis even had a name to it, facilitating human connection has always been at the core of what motivates me as an artist and designer.
 
-before my thesis even had a name to it, facilitating human connection has always been at the core of what motivates me as an artist and designer.
+To its core, The Human Condition began as a simple experiment for myself before BFA Design Thesis even had its first class - at the beginning of my senior year, despite it being my final cumulative year in undergrad, it weirdly felt like I was just as (if not even more so) lost as I was in my freshman year.
 
-to its core, The Human Condition began as a simple experiment for myself before BFA Design Thesis even began - at the beginning of my senior year, despite it being my final cumulative year in undergrad, it weirdly felt like i was just as (if not even more so) lost as i was in my freshman year.
+On a more personal, intimate note: the beginning of my thesis began with a severe mental breakdown in July 2025 that made me realize I needed to start prioritizing my mental health before it consumed me. I knew I just needed to put my foot through the door, and I needed a lot more than looking up self help threads on Reddit and books in Barnes & Noble.
 
-on a more personal, intimate note: the beginning of my thesis ideation began all the way back in july 2025 with a not-so-fun severe mental breakdown that made me realize i needed to start prioritizing my mental health before it consumed me. i knew i just needed to put my foot through the door and do SOMETHING, even if it was small, and i needed a lot more than looking up self help threads on Reddit and books in Barnes & Noble.
+As I started professional therapy in early August (which I may add has been very helpful BTW if anyone is interested!), I realized with the help of my therapist that my issues that seemed very much real and all-consuming at the moment had solutions - reading and hearing about other people’s experiences of how they dug themselves out of depression, self loathing, and negative mindsets over believing love was dead helped me change my mindset from negative to positive immensely.
 
-as i started professional therapy in early august (which i may add has been very helpful BTW if anyone is interested!), i realized with the help of my therapist that my issues that seemed very much real and all-consuming at the moment had solutions - reading and hearing about other people’s experiences of how they dug themselves out of depression, self loathing, and negative mindsets over believing love was dead helped me change my mindset from negative to positive immensely.
+Strangely enough, learning of other people’s love stories - whether it was fictional or nonfictional - was one of the biggest holistic catalysts for my quest of finding hope in life again. In a way, I hoped that my senior thesis could help someone else feel the same, even if it was just one person. If reading, witnessing, or participating in this project helps even one person feel more hopeful, then it has done what I set out for it to do.
 
-strangely enough, learning of other people’s love stories - whether it was fictional or nonfictional - was one of the biggest holistic catalysts for my quest of finding hope in life again. hearing about other people's rich stories full of heartbreak and love brought new perspectives to my life, and in a way, i hoped that my senior thesis could help someone else feel the same, even if it was just one person. if reading, witnessing, or participating in this project helps even one person feel more hopeful, then it has done what i set out for it to do beyond my thesis.
-
-i hope it has helped you in that way. ♡
+I hope it has helped you in that way. ♡
 </div>
 
 <div class="button-box">
@@ -198,7 +189,7 @@ i hope it has helped you in that way. ♡
 
 <script>
 /* ==========================
-   GRID SETUP
+   GRID SETUP (LESS CELLS)
 ========================== */
 const images = [
   "images/2.png","images/3.png","images/4.png","images/5.png",
@@ -207,12 +198,12 @@ const images = [
 ];
 
 const grid = document.querySelector(".grid");
-for (let i = 0; i < 90; i++) {
+for (let i = 0; i < 40; i++) { // fewer cells for performance
   const cell = document.createElement("div");
   cell.classList.add("cell");
   const randImg = images[Math.floor(Math.random() * images.length)];
   cell.style.backgroundImage = `url(${randImg})`;
-  cell.style.animationDuration = (2 + Math.random() * 4) + "s";
+  cell.style.animationDuration = (3 + Math.random() * 3) + "s";
   grid.appendChild(cell);
 }
 </script>
