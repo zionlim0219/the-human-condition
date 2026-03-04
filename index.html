@@ -212,27 +212,42 @@ const images = [
   "images/img20260218_21175695.png"
 ];
 
-/* GRID */
+/* --------------------------
+   GRID SETUP
+-------------------------- */
 const grid = document.querySelector(".grid");
 for (let i = 0; i < 250; i++) {
   const cell = document.createElement("div");
   cell.classList.add("cell");
+  const randImg = images[Math.floor(Math.random() * images.length)];
+  cell.style.backgroundImage = `url(${randImg})`;
   cell.style.animationDuration = (2 + Math.random() * 4) + "s";
   grid.appendChild(cell);
 }
 
-/* RANDOM ON LOAD */
+/* --------------------------
+   RANDOM IMAGE ON LOAD
+-------------------------- */
+const mainImage = document.getElementById("mainImage");
 window.addEventListener("DOMContentLoaded", () => {
   const randomIndex = Math.floor(Math.random() * images.length);
-  document.getElementById("mainImage").src = images[randomIndex];
+  mainImage.src = images[randomIndex];
 });
 
-/* BUTTON RANDOMIZER */
+/* --------------------------
+   BUTTON RANDOMIZER
+-------------------------- */
 document.getElementById("randomBtn").addEventListener("click", () => {
   const randomIndex = Math.floor(Math.random() * images.length);
-  document.getElementById("mainImage").src = images[randomIndex];
+  mainImage.src = images[randomIndex];
 });
 
+/* --------------------------
+   LEARN MORE BUTTON
+-------------------------- */
+document.getElementById("learnBtn").addEventListener("click", () => {
+  window.location.href = "learn-more.html"; // <-- your subpage URL
+});
 </script>
 
 </body>
