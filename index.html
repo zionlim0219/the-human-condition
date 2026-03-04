@@ -10,7 +10,6 @@
 /* --------------------------
    BODY + GRADIENT SHIFT
 -------------------------- */
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -25,8 +24,9 @@ body {
   100% { background: linear-gradient(to bottom right, #fff0cc, #ffb347); }
 }
 
-/* Attachment Key */
-
+/* --------------------------
+   ATTACHMENT KEY
+-------------------------- */
 .attachment-key {
   position: absolute;
   top: 20px;
@@ -36,6 +36,14 @@ body {
   z-index: 20;
   line-height: 1.6;
   text-transform: lowercase;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 10px 0;
+  border-radius: 8px;
+}
+
+.attachment-key div {
+  display: inline-block;
+  margin: 4px 12px;
 }
 
 .dot {
@@ -51,34 +59,40 @@ body {
 .purple { background:#9370db; }
 .orange { background:#ffb347; }
 
-/* Grid */
-
+/* --------------------------
+   GRID
+-------------------------- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(25, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  gap: 6px;
+  grid-template-columns: repeat(15, 1fr); /* fewer columns */
+  grid-template-rows: repeat(6, 1fr);    /* fewer rows */
+  gap: 8px;
   position: absolute;
   width: 100%;
   height: 100vh;
-  padding: 30px;
+  padding: 20px;
   box-sizing: border-box;
   z-index: 1;
 }
 
 .cell {
-  background: rgba(255,255,255,0.4);
-  border: 1px solid rgba(255,255,255,0.6);
+  background-size: contain;  /* ensures images fit inside cell */
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.2;
   animation: flicker infinite alternate ease-in-out;
+  border-radius: 4px;
 }
 
 @keyframes flicker {
-  0% { opacity: 0.25; }
-  100% { opacity: 0.65; }
+  0% { opacity: 0.15; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0.4; }
 }
 
-/* Centerpiece */
-
+/* --------------------------
+   CENTERPIECE
+-------------------------- */
 .centerpiece {
   position: absolute;
   top: 50%;
@@ -89,25 +103,29 @@ body {
 }
 
 .centerpiece img {
-  width: 240px;
-  height: 240px;
+  width: 350px;  /* bigger image square */
+  height: 350px;
   object-fit: cover;
   border: 3px solid white;
   box-shadow: 0 0 25px rgba(0,0,0,0.2);
+  display: block;
+  margin: 0 auto;
 }
 
 .button-box {
-  background: white;
-  margin-top: 20px;
-  padding: 12px 24px;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  gap: 12px;
 }
 
-#randomBtn {
+.button-box button {
   border: none;
-  background: none;
+  background: white;
   font-size: 16px;
   cursor: pointer;
+  padding: 12px 24px;
   text-transform: lowercase;
   animation: textShift 8s infinite alternate ease-in-out;
 }
@@ -137,6 +155,7 @@ body {
   <img id="mainImage" />
   <div class="button-box">
     <button id="randomBtn">click me!!!</button>
+    <button id="learnBtn">about this project ♡</button>
   </div>
 </div>
 
@@ -145,76 +164,18 @@ body {
 /* ==========================
    IMAGE LIST
 ========================== */
-
 const images = [
-  "images/2.png","images/3.png","images/4.png","images/5.png","images/6.png","images/7.png","images/8.png",
-  "images/9.jpg","images/10.jpg","images/11.jpg","images/12.jpg",
-  "images/13.png","images/14.png","images/15.png","images/16.png","images/17.png","images/18.png",
-  "images/19.png","images/20.png","images/21.png","images/22.png","images/23.png","images/24.png",
-  "images/25.png","images/26.png","images/27.png","images/28.png","images/29.png","images/30.png",
-  "images/31.png","images/32.png","images/33.png","images/34.png","images/35.png","images/36.png",
-  "images/37.png","images/38.png","images/39.png","images/40.png","images/41.png","images/42.png",
-
-  /* your IMG_ files */
-  "images/IMG_4036.JPG","images/IMG_4037.JPG","images/IMG_4038.JPG","images/IMG_4040.JPG",
-  "images/IMG_4041.JPG","images/IMG_4042.JPG","images/IMG_4043.JPG","images/IMG_4044.JPG",
-  "images/IMG_4046.JPG","images/IMG_4047.JPG","images/IMG_4048.JPG","images/IMG_4049.JPG",
-  "images/IMG_4050.JPG","images/IMG_4051.JPG","images/IMG_4052.JPG","images/IMG_4053.JPG",
-  "images/IMG_4054.JPG","images/IMG_4055.JPG","images/IMG_4056.JPG","images/IMG_4057.JPG",
-  "images/IMG_4058.JPG","images/IMG_4059.JPG","images/IMG_4060.JPG","images/IMG_4061.JPG",
-  "images/IMG_4062.JPG",
-
-  /* continuing */
-  "images/IMG_4070.JPG","images/IMG_4075.JPG","images/IMG_4076.JPG","images/IMG_4078.JPG",
-  "images/IMG_4079.JPG","images/IMG_4080.JPG","images/IMG_4081.JPG","images/IMG_4082.JPG",
-  "images/IMG_4083.JPG","images/IMG_4084.JPG","images/IMG_4085.JPG","images/IMG_4086.JPG",
-  "images/IMG_4087.JPG","images/IMG_4088.JPG","images/IMG_4089.JPG","images/IMG_4090.JPG",
-  "images/IMG_4093.JPG","images/IMG_4094.JPG","images/IMG_4095.JPG","images/IMG_4096.JPG",
-  "images/IMG_4097.JPG","images/IMG_4098.JPG","images/IMG_4099.JPG","images/IMG_4100.JPG",
-  "images/IMG_4101.JPG","images/IMG_4102.JPG","images/IMG_4103.JPG","images/IMG_4104.JPG",
-  "images/IMG_4105.JPG","images/IMG_4110.JPG","images/IMG_4111.JPG","images/IMG_4112.JPG",
-  "images/IMG_4113.JPG","images/IMG_4114.JPG","images/IMG_4115.JPG","images/IMG_4116.JPG",
-  "images/IMG_4117.JPG","images/IMG_4118.JPG","images/IMG_4119.JPG","images/IMG_4120.JPG",
-  "images/IMG_4121.JPG","images/IMG_4122.JPG","images/IMG_4123.JPG","images/IMG_4124.JPG",
-  "images/IMG_4125.JPG","images/IMG_4126.JPG","images/IMG_4127.JPG",
-  "images/IMG_4202.JPG","images/IMG_4203.JPG","images/IMG_4204.JPG","images/IMG_4206.JPG",
-  "images/IMG_4207.JPG","images/IMG_4208.JPG","images/IMG_4209.JPG","images/IMG_4210.JPG",
-  "images/IMG_4211.JPG","images/IMG_4216.JPG","images/IMG_4217.JPG","images/IMG_4218.JPG",
-  "images/IMG_4219.JPG","images/IMG_4220.JPG","images/IMG_4221.JPG","images/IMG_4222.JPG",
-  "images/IMG_4223.JPG","images/IMG_4224.JPG","images/IMG_4225.JPG","images/IMG_4226.JPG",
-  "images/IMG_4227.JPG","images/IMG_4228.JPG","images/IMG_4229.JPG","images/IMG_4230.JPG",
-  "images/IMG_4231.JPG","images/IMG_4232.JPG","images/IMG_4233.JPG","images/IMG_4234.JPG",
-  "images/IMG_4235.JPG","images/IMG_4236.JPG","images/IMG_4237.JPG","images/IMG_4238.JPG",
-  "images/IMG_4239.JPG","images/IMG_4240.JPG","images/IMG_4241.JPG","images/IMG_4242.JPG",
-  "images/IMG_4249.JPG","images/IMG_4250.JPG","images/IMG_4251.JPG","images/IMG_4252.JPG",
-  "images/IMG_4253.JPG","images/IMG_4254.JPG","images/IMG_4255.JPG","images/IMG_4256.JPG",
-  "images/IMG_4257.JPG","images/IMG_4258.JPG","images/IMG_4259.JPG","images/IMG_4260.JPG",
-  "images/IMG_4261.JPG","images/IMG_4266.JPG","images/IMG_4267.JPG","images/IMG_4268.JPG",
-  "images/IMG_4269.JPG","images/IMG_4270.JPG","images/IMG_4271.JPG","images/IMG_4272.JPG",
-  "images/IMG_4273.JPG","images/IMG_4274.JPG","images/IMG_4275.JPG","images/IMG_4276.JPG",
-  "images/IMG_4277.JPG","images/IMG_4278.JPG","images/IMG_4279.JPG","images/IMG_4280.JPG",
-  "images/IMG_4281.JPG","images/IMG_4282.JPG","images/IMG_4283.JPG",
-  "images/IMG_4294.JPG","images/IMG_4295.JPG","images/IMG_4296.JPG",
-  "images/IMG_4297.JPG","images/IMG_4298.JPG","images/IMG_4299.JPG","images/IMG_4300.JPG",
-  "images/IMG_4301.JPG","images/IMG_4302.JPG","images/IMG_4303.JPG","images/IMG_4306.JPG",
-  "images/IMG_4307.JPG","images/IMG_4313.JPG","images/IMG_4315.JPG","images/IMG_4316.JPG",
-  "images/IMG_4318.JPG","images/IMG_4319.JPG","images/IMG_4321.JPG","images/IMG_4322.JPG",
-  "images/IMG_4323.JPG","images/IMG_4325.JPG","images/IMG_4326.JPG","images/IMG_4328.JPG",
-  "images/IMG_4329.JPG","images/IMG_4330.JPG","images/IMG_4331.JPG","images/IMG_4337.JPG",
-  "images/IMG_4339.JPG","images/IMG_4340.JPG","images/IMG_4343.JPG","images/IMG_4345.JPG",
-  "images/IMG_4347.JPG","images/IMG_4348.JPG","images/IMG_4349.JPG",
-  "images/IMG_4421.JPG","images/IMG_4422.JPG","images/IMG_4424.JPG","images/IMG_4425.JPG",
-  "images/IMG_4426.JPG","images/IMG_4427.JPG","images/IMG_4428.JPG","images/IMG_4429.JPG",
-  "images/IMG_4430.JPG","images/IMG_4431.JPG",
-  "images/img20260218_21050826.png",
-  "images/img20260218_21175695.png"
+  "images/2.png","images/3.png","images/4.png","images/5.png",
+  "images/6.png","images/7.png","images/8.png",
+  "images/9.jpg","images/10.jpg","images/11.jpg","images/12.jpg"
+  /* add remaining images here, optionally resized for optimization */
 ];
 
 /* --------------------------
    GRID SETUP
 -------------------------- */
 const grid = document.querySelector(".grid");
-for (let i = 0; i < 250; i++) {
+for (let i = 0; i < 90; i++) {  // fewer cells to reduce load
   const cell = document.createElement("div");
   cell.classList.add("cell");
   const randImg = images[Math.floor(Math.random() * images.length)];
@@ -244,8 +205,9 @@ document.getElementById("randomBtn").addEventListener("click", () => {
    LEARN MORE BUTTON
 -------------------------- */
 document.getElementById("learnBtn").addEventListener("click", () => {
-  window.location.href = "learn-more.html"; // <-- your subpage URL
+  window.location.href = "http://zionlim0219.github.io/the-human-condition/about-this-project"; // replace with your actual subpage URL
 });
+
 </script>
 
 </body>
